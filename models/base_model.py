@@ -8,6 +8,7 @@ class BaseModel():
     """
     Class that defines all common attributes/methods for other classes
     Method:
+        __init__(self): class constructor
         __str__(self)
         save(self)
         to_dict(self)
