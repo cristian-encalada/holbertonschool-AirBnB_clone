@@ -24,7 +24,7 @@ class TestBaseModel(unittest.TestCase):
         base1.number = 87
         self.assertEqual(base1.number, 87)
 
-    def test_inheritance(self):
+    def test_is_an_object_BaseModel(self):
         base2 = BaseModel()
         self.assertTrue(isinstance(base2, BaseModel))
 
