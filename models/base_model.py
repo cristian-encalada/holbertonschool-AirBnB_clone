@@ -28,12 +28,16 @@ class BaseModel():
         format = "%Y-%m-%dT%H:%M:%S.%f"
         if len(kwargs) > 0:
             for key, value in kwargs.items():
-                if key == 'created_at':
-                    value = datetime.strptime(value, format)
-                if key == 'updated_at':
-                    value = datetime.strptime(value, format)
                 if key == __class__:
                     pass
+                elif key == 'created_at':
+                    value = datetime.strptime(value, format)
+                    setattr(self, key, value)
+                elif key == 'updated_at':
+                    value = datetime.strptime(value, format)
+                    setattr(self, key, value)
+                else:
+                    setattr(self, key, value)
 
     def __str__(self):
         """
