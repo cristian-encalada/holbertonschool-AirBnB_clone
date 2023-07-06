@@ -13,7 +13,7 @@ class BaseModel():
         save(self)
         to_dict(self)
     """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Method:
             __init__(self)
@@ -25,6 +25,15 @@ class BaseModel():
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
+        format = "%Y-%m-%dT%H:%M:%S.%f"
+        if len(kwargs) > 0:
+            for key, value in kwargs.items():
+                if key == 'created_at':
+                    value = datetime.strptime(value, format)
+                if key == 'updated_at':
+                    value = datetime.strptime(value, format)
+                if key == __class__:
+                    pass
 
     def __str__(self):
         """
