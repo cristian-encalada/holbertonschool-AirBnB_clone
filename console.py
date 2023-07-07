@@ -3,13 +3,14 @@
 """
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 import models
 
 
 class HBNBCommand(cmd.Cmd):
     """ Contains the entry point of the command interpreter
     """
-    list_models = ["BaseModel"]
+    list_models = ["BaseModel", "User"]
     prompt = "(hbnb) "
 
     def emptyline(self):
@@ -129,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-    def do_update(self, line):
+    def update(self, line):
         """
         Updates an instance based on the class name and id
         by adding or updating attribute (save the change into the JSON file).
