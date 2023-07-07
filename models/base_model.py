@@ -62,8 +62,8 @@ class BaseModel():
         """
         new_dict = {}
         new_dict["__class"] = self.__class__.__name__
-        for key, value in self.__dict__:
-            if isinstance(datetime):
+        for key, value in self.__dict__.items():
+            if isinstance(value, datetime):
                 new_dict[key] = value.isoformat()
             else:
                 new_dict[key] = value
