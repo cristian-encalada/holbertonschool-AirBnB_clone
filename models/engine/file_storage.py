@@ -7,7 +7,7 @@ from models.base_model import BaseModel
 
 class FileStorage:
     """
-    class taht serializes instances to a JSON file and
+    class that serializes instances to a JSON file and
     deserializes JSON file to instances
     Private class attributes:
         __file_path: string, path to the JSON file (ex: file.json)
