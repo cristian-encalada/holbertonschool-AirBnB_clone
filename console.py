@@ -2,7 +2,6 @@
 """ Contains the entry point of the command interpreter
 """
 import cmd
-from shlex import split
 from models.base_model import BaseModel
 import models
 
@@ -35,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: create <class_name>
         Example: create BaseModel
         """
-        args = split(line)
+        args = line.split()
         if len(args) == 0:
             print("** class name missing **")
             return
@@ -56,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: show <class_name> <instance_id>
         Example: show BaseModel 1234-1234-1234
         """
-        args = split(line)
+        args = line.split()
         if len(args) == 0:
             print("** class name missing **")
             return
@@ -84,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: destroy <class_name> <instance_id>
         Example: destroy BaseModel 1234-1234-1234
         """
-        args = split(line)
+        args = line.split()
         if len(args) == 0:
             print("** class name missing **")
             return
@@ -105,6 +104,57 @@ class HBNBCommand(cmd.Cmd):
             models.storage.save()
         else:
             print("** no instance found **")
+
+    def do_all(self, line):
+        """Prints all string representation of all instances
+        based or not on the class name.
+        Example: all BaseModel or all.
+        """
+        list_string = []
+        args = line.split()
+        if len(args) == 0:
+            obj = models.storage.all()
+            for key, value in obj.items():
+                obj_str = str(obj[key])
+                list_string.append(obj_str)
+            print(list_string)
+        elif args[0] in HBNBCommand.list_models:
+            obj = models.storage.all()
+            for key, value in obj.items():
+                if args[0] in key:
+                    obj_str = str(obj[key])
+                    list_string.append(obj_str)
+            print(list_string)
+        else:
+            print("** class doesn't exist **")
+            return
+
+    def do_update(self, line):
+        """
+        Updates an instance based on the class name and id
+        by adding or updating attribute (save the change into the JSON file).
+        Example: update BaseModel 1234-1234-1234 email "aibnb@mail.com".
+        """
+        args = line.split()
+
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in HBNBCommand.list_models:
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        elif len(args) == 2:
+            print("** attribute name missing **")
+        elif len(args) == 3:
+            print("** value missing **")
+        else:
+            key = "{}.{}".format(args[0], args[1])
+            cast = type(eval(args[3]))
+            if key in models.storage.all():
+                setattr(models.storage.all()[key], args[2], cast(args[3]))
+                models.storage.save()
+            else:
+                print("** no instance found **")
 
 
 if __name__ == '__main__':
