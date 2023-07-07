@@ -2,7 +2,6 @@
 """ Contains the entry point of the command interpreter
 """
 import cmd
-from shlex import split
 from models.base_model import BaseModel
 import models
 
@@ -35,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: create <class_name>
         Example: create BaseModel
         """
-        args = split(line)
+        args = line.split()
         if len(args) == 0:
             print("** class name missing **")
             return
@@ -56,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: show <class_name> <instance_id>
         Example: show BaseModel 1234-1234-1234
         """
-        args = split(line)
+        args = line.split()
         if len(args) == 0:
             print("** class name missing **")
             return
@@ -84,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: destroy <class_name> <instance_id>
         Example: destroy BaseModel 1234-1234-1234
         """
-        args = split(line)
+        args = line.split()
         if len(args) == 0:
             print("** class name missing **")
             return
@@ -112,7 +111,7 @@ class HBNBCommand(cmd.Cmd):
         Example: all BaseModel or all.
         """
         list_string = []
-        args = split(line)
+        args = line.split()
         if len(args) == 0:
             obj = models.storage.all()
             for key, value in obj.items():
@@ -129,6 +128,13 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
             return
+        
+    def update(self, line):
+        """
+        Updates an instance based on the class name and id
+        by adding or updating attribute (save the change into the JSON file).
+        Example: update BaseModel 1234-1234-1234 email "aibnb@mail.com".
+        """
 
 
 if __name__ == '__main__':
