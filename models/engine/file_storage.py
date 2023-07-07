@@ -15,7 +15,7 @@ class FileStorage:
     """
     __file_path = "file.json"
     __objects = {}
-    dict_clas = {"BaseModel": BaseModel}
+    dict_class = {"BaseModel": BaseModel, "User": User}
 
     def all(self):
         """
@@ -53,7 +53,7 @@ class FileStorage:
             with open(self.__file_path, mode='r', encoding="UTF-8") as file:
                 new_obj = json.load(file)
             for key, value in new_obj.items():
-                obj = self.dict_clas[value["__class__"]](**value)
+                obj = self.dict_class[value["__class__"]](**value)
                 self.__objects[key] = obj
         except FileNotFoundError:
             pass
