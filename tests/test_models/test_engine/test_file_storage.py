@@ -11,35 +11,33 @@ from datetime import datetime
 class TestFileStorage(unittest.TestCase):
     """Unittest for class FileStorage"""
 
+    def test_file_path_type(self):
+        """Check type of __file_path attribute"""
+        self.assertEqual(type(FileStorage._FileStorage__file_path), str)
+
+    def test_objects_type(self):
+        """Check type of __objects attribute"""
+        self.assertEqual(type(FileStorage._FileStorage__objects), dict)
+
     def test_all_method(self):
-        """Check the all() method"""
+        """Check methods new(), all() and reload()"""
         storage = FileStorage()
         base1 = BaseModel()
-        base2 = BaseModel()
         storage.new(base1)
-        storage.new(base2)
         all_objs = storage.all()
         self.assertIn(base1, all_objs.values())
-        self.assertIn(base2, all_objs.values())
-
-    def test_attr_after_create_fs(self):
-        """Check instance.name after created"""
-        base3 = BaseModel()
-        base3.name = "My_First_Model"
-        self.assertEqual(base3.name, "My_First_Model")
+        storage.reload()
+        all_objs_reloaded = storage.all()  # Get all objects from the reloaded storage
+        # Verify that the BaseModel instance is still present in the reloaded storage
+        self.assertIn(base1, all_objs_reloaded.values())
 
     def test_save_fs(self):
         """Check save() method"""
-        base4 = BaseModel()
-        updated_at = base4.updated_at
-        base4.save()
-        last_updated_at = base4.updated_at
+        base2 = BaseModel()
+        updated_at = base2.updated_at
+        base2.save()
+        last_updated_at = base2.updated_at
         self.assertNotEqual(updated_at, last_updated_at)
-
-    def test_isInstance_FileStorage(self):
-        """Check if an FileStorage object isInstance of BaseModel"""
-        base5 = BaseModel()
-        self.assertTrue(isinstance(base5, BaseModel))
 
 
 if __name__ == '__main__':
