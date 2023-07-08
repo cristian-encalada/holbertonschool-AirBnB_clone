@@ -48,6 +48,8 @@ class TestBaseModel(unittest.TestCase):
         base4 = BaseModel()
         base_json = base4.to_dict()
         self.assertEqual(type(base_json), dict)
+        self.assertEqual(type(base_json["created_at"]), str)
+        self.assertEqual(type(base_json["updated_at"]), str)
 
     def test_hasattr_after_create(self):
         """Check if a new instance has proper attributes"""
@@ -57,10 +59,9 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(my_model, 'updated_at'))
 
     def test_str_(self):
-        base5= BaseModel()
-        string = str(base5)
-        self.assertIn(base5.id, string)
-        self.assertIn(base5.__class__.__name__, string)
+        base5 = BaseModel()
+        string_rep = f"[{base5.__class__.__name__}] ({base5.id}) {base5.__dict__}"
+        self.assertEqual(string_rep, base5.__str__())
 
 
 if __name__ == '__main__':
