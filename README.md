@@ -61,31 +61,41 @@ The following is a diagram of this first stage:
 
 For the implementation, the following file structure was defind:
 
-```
+```sh
+[cristian@ArchKDE holbertonschool-AirBnB_clone]$ tree .
 .
 ├── AUTHORS
 ├── console.py
+├── file.json
 ├── models
-│   ├── amenity.py
-│   ├── base_model.py
-│   ├── city.py
-│   ├── engine
-│   │   ├── file_storage.py
-│   │   └── __init__.py
-│   ├── __init__.py
-│   ├── place.py
-│   ├── review.py
-│   ├── state.py
-│   └── user.py
+│   ├── amenity.py
+│   ├── base_model.py
+│   ├── city.py
+│   ├── engine
+│   │   ├── file_storage.py
+│   │   └── __init__.py
+│   ├── __init__.py
+│   ├── place.py
+│   ├── review.py
+│   ├── state.py
+│   └── user.py
 ├── README.md
 └── tests
     ├── __init__.py
     └── test_models
         ├── __init__.py
+        ├── test_amenity.py
         ├── test_base_model.py
-        └── test_engine
+        ├── test_city.py
+        ├── test_engine
+        │   ├── __init__.py
+        │   └── test_file_storage.py
+        ├── test_place.py
+        ├── test_review.py
+        ├── test_state.py
+        └── test_user.py
 
-6 directories, 16 files
+6 directories, 25 files
 ```
 
 __Directories__
@@ -156,29 +166,24 @@ All unit tests pass in both modes:
 __Interactive mode__
 
 ```sh
-guillaume@ubuntu:~/AirBnB$ python3 -m unittest discover tests
-...................................................................................
-...................................................................................
-.......................
+[cristian@ArchKDE holbertonschool-AirBnB_clone]$ python3 -m unittest discover tests
+................................
 ----------------------------------------------------------------------
-Ran 189 tests in 13.135s
+Ran 32 tests in 0.073s
 
 OK
-guillaume@ubuntu:~/AirBnB$
+[cristian@ArchKDE holbertonschool-AirBnB_clone]$
 ```
 
 __Non-Interactive mode__
 
 ```sh
-guillaume@ubuntu:~/AirBnB$ echo "python3 -m unittest discover tests" | bash
-...................................................................................
-...................................................................................
-.......................
+[cristian@ArchKDE holbertonschool-AirBnB_clone]$ echo "python3 -m unittest discover tests" | bash
+................................
 ----------------------------------------------------------------------
-Ran 189 tests in 13.135s
+Ran 32 tests in 0.065s
 
 OK
-guillaume@ubuntu:~/AirBnB$
 ```
 
 ## Authors

@@ -75,5 +75,6 @@ class TestBaseModel(unittest.TestCase):
         with self.assertRaises(TypeError):
             base8 = BaseModel(**"test")
 
+
 if __name__ == '__main__':
     unittest.main()

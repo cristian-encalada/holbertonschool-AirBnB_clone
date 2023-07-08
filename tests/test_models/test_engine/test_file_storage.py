@@ -26,8 +26,7 @@ class TestFileStorage(unittest.TestCase):
         all_objs = storage.all()
         self.assertIn(base1, all_objs.values())
         storage.reload()
-        all_objs_reloaded = storage.all()  # Get all objects from the reloaded storage
-        # Verify that the BaseModel instance is still present in the reloaded storage
+        all_objs_reloaded = storage.all()
         self.assertIn(base1, all_objs_reloaded.values())
 
     def test_save_fs(self):
@@ -42,6 +41,7 @@ class TestFileStorage(unittest.TestCase):
         """Create an FileStorage"""
         self.storage = FileStorage()
         self.path = "file.json"
+
 
 if __name__ == '__main__':
     unittest.main()
