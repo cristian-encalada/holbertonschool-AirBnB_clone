@@ -34,7 +34,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(isinstance(base2.created_at, datetime))
         self.assertTrue(isinstance(base2.updated_at, datetime))
 
-
     def test_save_bm(self):
         """Check save() method"""
         base3 = BaseModel()
@@ -53,15 +52,15 @@ class TestBaseModel(unittest.TestCase):
 
     def test_hasattr_after_create(self):
         """Check if a new instance has proper attributes"""
-        my_model = BaseModel()
-        self.assertTrue(hasattr(my_model, 'id'))
-        self.assertTrue(hasattr(my_model, 'created_at'))
-        self.assertTrue(hasattr(my_model, 'updated_at'))
+        base5 = BaseModel()
+        self.assertTrue(hasattr(base5, 'id'))
+        self.assertTrue(hasattr(base5, 'created_at'))
+        self.assertTrue(hasattr(base5, 'updated_at'))
 
     def test_str_(self):
-        base5 = BaseModel()
-        string_rep = f"[{base5.__class__.__name__}] ({base5.id}) {base5.__dict__}"
-        self.assertEqual(string_rep, base5.__str__())
+        b6 = BaseModel()
+        string_rep = f"[{b6.__class__.__name__}] ({b6.id}) {b6.__dict__}"
+        self.assertEqual(string_rep, b6.__str__())
 
 
 if __name__ == '__main__':
