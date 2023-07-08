@@ -5,7 +5,6 @@ Unit tests for models/engine/file_storage.py
 import unittest
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
-from datetime import datetime
 
 
 class TestFileStorage(unittest.TestCase):
@@ -39,6 +38,10 @@ class TestFileStorage(unittest.TestCase):
         last_updated_at = base2.updated_at
         self.assertNotEqual(updated_at, last_updated_at)
 
+    def test_path(self):
+        """Create an FileStorage"""
+        self.storage = FileStorage()
+        self.path = "file.json"
 
 if __name__ == '__main__':
     unittest.main()

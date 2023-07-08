@@ -58,10 +58,22 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(base5, 'updated_at'))
 
     def test_str_(self):
+        """Check __str__"""
         b6 = BaseModel()
         string_rep = f"[{b6.__class__.__name__}] ({b6.id}) {b6.__dict__}"
         self.assertEqual(string_rep, b6.__str__())
 
+    def test_to_dict2_bm(self):
+        """Check to_dict"""
+        base7 = BaseModel()
+        self.assertIn('id', base7.to_dict())
+        self.assertIn('created_at', base7.to_dict())
+        self.assertIn('updated_at', base7.to_dict())
+
+    def test_invalid_kwargs(self):
+        """Check TypeError for string input for kwargs"""
+        with self.assertRaises(TypeError):
+            base8 = BaseModel(**"test")
 
 if __name__ == '__main__':
     unittest.main()
