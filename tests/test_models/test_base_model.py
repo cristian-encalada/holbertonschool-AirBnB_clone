@@ -30,6 +30,10 @@ class TestBaseModel(unittest.TestCase):
         """Check if object isInstance of BaseModel"""
         base2 = BaseModel()
         self.assertTrue(isinstance(base2, BaseModel))
+        self.assertTrue(isinstance(base2.id, str))
+        self.assertTrue(isinstance(base2.created_at, datetime))
+        self.assertTrue(isinstance(base2.updated_at, datetime))
+
 
     def test_save_bm(self):
         """Check save() method"""
@@ -51,6 +55,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(my_model, 'id'))
         self.assertTrue(hasattr(my_model, 'created_at'))
         self.assertTrue(hasattr(my_model, 'updated_at'))
+
+    def test_str_(self):
+        base5= BaseModel()
+        string = str(base5)
+        self.assertIn(base5.id, string)
+        self.assertIn(base5.__class__.__name__, string)
 
 
 if __name__ == '__main__':
