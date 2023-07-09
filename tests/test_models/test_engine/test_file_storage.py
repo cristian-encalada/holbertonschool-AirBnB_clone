@@ -23,6 +23,8 @@ class TestFileStorage(unittest.TestCase):
         storage = FileStorage()
         base1 = BaseModel()
         storage.new(base1)
+        string_rep = f"{base1.__class__.__name__}.{base1.id}"
+        self.assertEqual(storage.all()[string_rep], base1)
         all_objs = storage.all()
         self.assertIn(base1, all_objs.values())
         storage.reload()
@@ -41,6 +43,7 @@ class TestFileStorage(unittest.TestCase):
         """Create an FileStorage"""
         self.storage = FileStorage()
         self.path = "file.json"
+        self.assertEqual(self.storage._FileStorage__file_path, 'file.json')
 
 
 if __name__ == '__main__':
