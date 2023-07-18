@@ -1,3 +1,5 @@
+/* Container and Filters */
+
 .container .filters {
     background: white;
     height: 70px;
@@ -7,6 +9,8 @@
     position: relative;
 }
 
+/* Buttons */
+  
 button {
     font-size: 18px;
     background-color: #FF5A5F;
@@ -19,16 +23,21 @@ button {
     top: 15%;
     position: absolute;
 }
-
+  
 button:hover {
     opacity: 0.9;
 }
+  
+/* Filters */
+
+.filters {
+    display: flex; /* Display as flex to align items in a row */
+}
 
 .filters div {
-    height: 100%;
     width: 25%;
+    /* height: 100%; */
     display: inline-block;
-    position: relative;
 }
 
 .filters h3 {
@@ -44,14 +53,23 @@ button:hover {
     margin-left: 20%;
 }
 
+/* Locations */
+
 .locations {
     border-right: 1px solid #DDDDDD;
 }
 
+.locations h2 {
+    font-size: 16px;
+}
+
+/* Amenities */
+
 .amenities {
-    height: 100%;
     width: 25%;
 }
+
+/* popover and hover  */
 
 .popover {
     visibility: hidden;
@@ -59,28 +77,21 @@ button:hover {
     border: 1px solid #DDDDDD;
     border-radius: 4px;
     background: #FAFAFA;
-    padding-bottom: 25px;
+    padding: 20px 0;
 }
 
 .amenities .popover {
     padding: 20px 0;
-    margin-left: -5px;
-    margin-top: 1%;
 }
 
 .popover ul {
     list-style-type: none;
     width: 100%;
-    height: 100%;
+    margin: 0;
 }
 
 .amenities:hover .popover,
 .locations:hover .popover {
     visibility: visible;
     width: 100%;
-    height: 100%;
-}
-
-.locations h2 {
-    font-size: 16px;
 }
