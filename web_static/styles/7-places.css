@@ -1,0 +1,26 @@
+.places {
+    display: flex;
+    /* flex-wrap: wrap; allows the flex items to wrap onto multiple lines 
+    when there isn't enough horizontal space to fit them all in a single row.*/
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.places h1 {
+    text-align: left;
+    font-size: 30px;
+    width: 100%;
+}
+
+.places article {
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #FF5A5F;
+    border-radius: 4px;
+}
+
+.places h2 {
+	font-size: 30px;
+	text-align: center;
+}
